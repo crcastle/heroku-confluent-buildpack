@@ -19,6 +19,7 @@ curl --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common --st
 install_java_with_overlay ${BUILD_DIR}
 
 # install maven
+mkdir -p $CACHE_DIR
 cd $CACHE_DIR
 install_maven ${CACHE_DIR} ${BUILD_DIR}
 
