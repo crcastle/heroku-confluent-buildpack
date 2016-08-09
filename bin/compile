@@ -81,9 +81,15 @@ fi
 
 cp -a confluent-${CONFLUENT_VERSION}/* $BUILD_DIR/
 
+echo "Copied Confluent ${CONFLUENT_VERSION} successfully" | indent
+
 rm -rf $BUILD_DIR/share
 
-echo "Copied Confluent ${CONFLUENT_VERSION} successfully" | indent
+echo "Deleted share directory" | indent
+
+ls $BUILD_DIR
+
+du -h -d1 $BUILD_DIR
 
 CONFLUENT_COMPONENT=$(cat ${ENV_DIR}/CONFLUENT_COMPONENT)
 
