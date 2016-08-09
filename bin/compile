@@ -83,9 +83,9 @@ cp -a confluent-${CONFLUENT_VERSION}/* $BUILD_DIR/
 
 echo "Copied Confluent ${CONFLUENT_VERSION} successfully" | indent
 
-rm -rf $BUILD_DIR/share
+rm -rf $BUILD_DIR/share $BUILD_DIR/confluent-${CONFLUENT_VERSION}
 
-echo "Deleted share directory" | indent
+echo "Deleted share and confluent directories" | indent
 
 ls $BUILD_DIR
 
