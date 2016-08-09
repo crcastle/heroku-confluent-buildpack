@@ -18,6 +18,9 @@ curl --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common --st
 # install JDK
 install_java_with_overlay ${BUILD_DIR}
 
+BP_DIR=$(cd $(dirname $0)/..; pwd) # absolute path
+. $BP_DIR/lib/common.sh
+
 # install maven
 mkdir -p $CACHE_DIR
 cd $CACHE_DIR
