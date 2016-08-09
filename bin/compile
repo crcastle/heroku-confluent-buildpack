@@ -53,7 +53,7 @@ fi
 
 sed -i -e "s/%PORT%/\${PORT}/g" confluent.properties
 
-bin/${CONFLUENT_COMPONENT} confluent.properties $@
+bin/${CONFLUENT_COMPONENT} confluent.properties \$@
 EOF
 
 chmod a+x ${BUILD_DIR}/bin/run-confluent
