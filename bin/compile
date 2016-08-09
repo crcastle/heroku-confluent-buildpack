@@ -4,9 +4,6 @@
 set -e
 
 
-BP_DIR=$(cd $(dirname $0)/..; pwd) # absolute path
-. $BP_DIR/lib/common.sh
-
 indent() {
     sed -u 's/^/      /'
 }
@@ -26,6 +23,9 @@ curl --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common --st
 install_java_with_overlay ${BUILD_DIR}
 
 # install maven
+BP_DIR=$(cd $(dirname $0)/..; pwd) # absolute path
+. $BP_DIR/lib/common.sh
+
 mkdir -p $CACHE_DIR
 cd $CACHE_DIR
 install_maven ${CACHE_DIR} ${BUILD_DIR}
