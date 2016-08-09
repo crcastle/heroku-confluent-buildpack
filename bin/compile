@@ -83,7 +83,8 @@ cp -a confluent-${CONFLUENT_VERSION}/* $BUILD_DIR/
 
 echo "Copied Confluent ${CONFLUENT_VERSION} successfully" | indent
 
-rm -rf $BUILD_DIR/share $BUILD_DIR/confluent-${CONFLUENT_VERSION}
+rm -rf $BUILD_DIR/share/java/kafka-connect-hdfs $BUILD_DIR/share/java/schema-registry $BUILD_DIR/share/java/confluent-control-center
+rm -rf $BUILD_DIR/confluent-${CONFLUENT_VERSION}
 
 echo "Deleted share and confluent directories" | indent
 
