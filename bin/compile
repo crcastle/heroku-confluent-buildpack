@@ -64,6 +64,7 @@ We're sorry this build is failing! If you can't find the issue in application co
 please submit a ticket so we can help: https://help.heroku.com/"
 fi
 
+# download and "install" confluent
 CONFLUENT_VERSION=$(cat ${ENV_DIR}/CONFLUENT_VERSION)
 ARCHIVE_URL_OVERRIDE=$(cat ${ENV_DIR}/ARCHIVE_URL_OVERRIDE)
 
@@ -90,11 +91,7 @@ echo "Copied Confluent ${CONFLUENT_VERSION} successfully" | indent
 rm -rf $BUILD_DIR/share/java/kafka-connect-hdfs $BUILD_DIR/share/java/schema-registry $BUILD_DIR/share/java/confluent-control-center
 rm -rf $BUILD_DIR/confluent-${CONFLUENT_VERSION}
 
-echo "Deleted share and confluent directories" | indent
-
-ls $BUILD_DIR
-
-du -h -d1 $BUILD_DIR
+echo "Deleted extra share and confluent directories to reduce slug size" | indent
 
 CONFLUENT_COMPONENT=$(cat ${ENV_DIR}/CONFLUENT_COMPONENT)
 
@@ -103,6 +100,8 @@ if [[ -z "${CONFLUENT_COMPONENT}" ]]; then
     exit 0
 fi
 
+# generate script to start Confluent
+# this regenerates confluent.properties every time it's run
 cat > ${BUILD_DIR}/bin/run-confluent <<EOF
 #!/usr/bin/env bash
 
